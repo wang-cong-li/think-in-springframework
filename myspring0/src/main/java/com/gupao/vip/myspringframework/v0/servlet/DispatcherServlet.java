@@ -197,8 +197,12 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private String getBeanNameByClassName(String simpleName) {
-        char[] simpleNameArr_upper_case = simpleName.toUpperCase().toCharArray();
-        simpleNameArr_upper_case[0] = (char)(simpleNameArr_upper_case[0] + 32);
+        char[] simpleNameArr_upper_case = simpleName.toCharArray();
+        char firstLetter = simpleNameArr_upper_case[0];
+        if (Character.isUpperCase(firstLetter)) {
+            firstLetter = (char)(simpleNameArr_upper_case[0] + 32);
+        }
+        simpleNameArr_upper_case[0] = firstLetter;
         return String.valueOf(simpleNameArr_upper_case);
     }
 
